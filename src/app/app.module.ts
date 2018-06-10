@@ -7,9 +7,25 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import {LoginPage} from '../pages/login/login';
+import { LlistaPage } from '../pages/llista/llista';
+import { Camera } from '@ionic-native/camera';
+import { CameraPage } from '../pages/camera/camera';
+import { BaseDadesPage} from '../pages/sqlite/sqlite';
+// import { IonicStorageModule } from '@ionic/storage';
+import { SQLite } from '@ionic-native/sqlite';
+import { BaseDadesService } from '../providers/baseDadesService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+class CameraMock extends Camera {
+  getPicture(options) {
+    return new Promise((resolve, reject) => {
+      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+    })
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -17,11 +33,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    LlistaPage,
+    CameraPage,
+    BaseDadesPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // IonicStorageModule.forRoot({
+    //     name: '__ionic',
+    //        driverOrder: ['indexeddb', 'sqlite', 'websql']
+    //   })
+    // ],
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +54,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    LlistaPage,
+    CameraPage,
+    BaseDadesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    SQLite,
+    BaseDadesService
+
   ]
 })
 export class AppModule {}

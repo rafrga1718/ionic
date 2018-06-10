@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>llista d'items</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{item.icona}}">
+        </ion-avatar>
+        <h2>{{item.titol}}</h2>
+        <h3>{{item.desc}}</h3>
+        <p>{{item.text}}</p>
+      </ion-item>
+    </button>
+  </ion-list>
+
+
+  <button ion-button color="primary" menuToggle>Accedir al Menu</button>
+
+</ion-content>

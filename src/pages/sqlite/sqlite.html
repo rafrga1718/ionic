@@ -1,0 +1,39 @@
+<!--
+  Generated template for the SqlitePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tasques</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="openAlertNewTask()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="tasques.length == 0">
+      Cap
+    </ion-item>
+    <ion-item-sliding #sliding *ngFor="let tasca of tasques; let i = index">
+      <ion-item >
+        <ion-label>{{ tasca.titol }}</ion-label>
+        <ion-checkbox (ionChange)="updateTask( tasca, i )" [checked]="tasca.completed"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="right" icon-left>
+        <button ion-button color="danger" (click)="esborrarTasca(tasca, i)">
+          <ion-icon name="trash"></ion-icon>
+          Esborra
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
